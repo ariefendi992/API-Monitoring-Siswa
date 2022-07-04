@@ -4,6 +4,7 @@
 ### Studi Kasus SMP Negeri 2 Makassar
 #### Spesifikasi :
 ##### - Hak Akses
+- Admin
 - Siswa
 - Guru Wali Kelas
 - Guru BK
