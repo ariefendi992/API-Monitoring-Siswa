@@ -1,4 +1,6 @@
+from datetime import datetime, timedelta
 from flask import Blueprint, jsonify, request
+from flask_jwt_extended import create_access_token
 from API.extensions import db
 from API.lib.database.db_custome import MyDB
 from API.lib.status_code import *
@@ -68,7 +70,7 @@ def fecth_data_pengguna():
 @auth.patch('/edit-pengguna')
 @auth.get('/edit-pengguna')
 def edit_pengguna():    
-    nama_penguna = request.json.get('username')
+    nama_pengguna = request.json.get('username')
     kata_sandi = request.json.get('password')
     level_id = request.json.get('level')
 
@@ -78,7 +80,7 @@ def edit_pengguna():
 
     print(sql.nama_pengguna)
 
-    sql.nama_pengguna = nama_penguna
+    sql.nama_pengguna = nama_pengguna
     sql.kata_sandi = AuthModel.generate_pw_hash(kata_sandi)
     sql.kata_sandi_sekarang = kata_sandi
     sql.level_id = level_id
@@ -109,4 +111,35 @@ def delete_pengguna():
     return jsonify({
         'msg' : 'User telah di hapus.!'
     }), HTTP_204_NO_CONTENT
-    
+
+@auth.route('/login', methods=['POST', 'GET'])
+def login_pengguna():
+    nama_pengguna = request.json.get('username')
+    kata_sandi = request.json.get('password')
+    # level_id = request.json.get('level')
+
+    sql = MyDB(AuthModel)
+    query = sql.filter_by(nama_pengguna=nama_pengguna)
+
+    is_pass_correct = AuthModel.check_pw_hash(query.kata_sandi, kata_sandi)
+    if not query or not is_pass_correct:
+        return jsonify({
+            'error' : 'Username atau Kata Sandi salah.! Silahkan periksa kembali.'
+        }), HTTP_401_UNAUTHORIZED
+
+    query_join = sql.join_one(LevelModel)
+
+    _level = None 
+    for _, j in query_join:
+        _level = j.level
+
+    else:
+        expire_token = timedelta(minutes=10)
+        access_token = create_access_token(identity=query, expires_delta=expire_token)
+        return jsonify({
+            'access_token' : access_token,
+            'id' : query.id,
+            'username' : query.nama_pengguna,
+            'level' : _level
+        })
+

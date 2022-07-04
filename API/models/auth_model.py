@@ -28,8 +28,8 @@ class AuthModel(db.Model):
     def generate_pw_hash(kata_sandi):
         return bcrypt.generate_password_hash(kata_sandi)
 
-    def check_pw_hash(self, kata_sandi):
-        return self.check_pw_hash(self.kata_sandi, kata_sandi)
+    def check_pw_hash(*args, **kwargs):
+        return bcrypt.check_password_hash(*args, **kwargs)
 
 
 class LevelModel(db.Model):
