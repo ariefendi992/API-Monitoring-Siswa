@@ -1,3 +1,4 @@
+from this import d
 from API.extensions import db
 
 class MyDB:
@@ -18,6 +19,10 @@ class MyDB:
 
     def query_update(self):
         return db.session.commit()
+
+    def delete_query(self, *args ):
+        db.session.delete(*args)
+        db.session.commit()
 
     def join_one(self, *args):
         return db.session.query(self.table, *args).join(*args).all()

@@ -90,3 +90,22 @@ def edit_pengguna():
         'username' : sql.nama_pengguna,
         'slug' : sql.slug
     }), HTTP_201_CREATED
+
+@auth.delete('/delete-pengguna')
+def delete_pengguna():
+    sql = MyDB(AuthModel)
+    slug = request.args.get('slug')
+    
+    query = sql.filter_by(slug=slug)
+
+    if not query:
+        return jsonify({
+            'error' : 'Akun tidak di temukan'
+        }), HTTP_404_NOT_FOUND
+
+    sql.delete_query(query)
+
+    return jsonify({
+        'msg' : 'User telah di hapus.!'
+    }), HTTP_204_NO_CONTENT
+    
