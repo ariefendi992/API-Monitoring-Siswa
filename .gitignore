@@ -1,5 +1,6 @@
 /migrations
 /env
 /__pycache__
+/.vscode
 test.py
 create_db
