@@ -92,6 +92,7 @@ def edit_pengguna():
     }), HTTP_201_CREATED
 
 @auth.delete('/delete-pengguna')
+@auth.get('/delete-pengguna')
 def delete_pengguna():
     sql = MyDB(AuthModel)
     slug = request.args.get('slug')
