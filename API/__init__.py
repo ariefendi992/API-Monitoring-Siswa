@@ -15,9 +15,11 @@ def create_app():
 
 
 def register_extensions(app):
-    from API.extensions import db, migrate
+    from API.extensions import db, bcrypt, migrate, jwt
 
+    jwt.init_app(app)
     db.init_app(app)
+    bcrypt.init_app(app)
     migrate.init_app(app, db)
 
 

@@ -17,7 +17,8 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://'+ username + ':' + password + '@' + host + '/' + database
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-
+    # jwt secret key
+    JWT_SECRET_KEY = str(os.getenv('jwt_secret_key'))
     # test configuration
     # print(SECRET_KEY)
     # print(username)
