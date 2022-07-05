@@ -25,9 +25,9 @@
   - windows: py -m venv env
   - ubuntu: pthon3 -m venv venv
 - Jalankan perintah <b>pip install -r requirements.txt</b> pada terminal
-- Jlankan perintah:
-  - <b>flask db init</>
-  - <b>flask db migrate</>
-  - <b>flask db upgrade</>
+- Jlankan perintah berikut pada terminal:
+  - <b>flask db init</b>
+  - <b>flask db migrate</b>
+  - <b>flask db upgrade</b>
 ### Project Dalam Tahap Pengerjaan
 
