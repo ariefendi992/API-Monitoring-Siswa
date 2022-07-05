@@ -19,7 +19,15 @@
   - Perilaku
   - Tugas
   
- 
- 
- ### Project Dalam Tahap Pengerjaan
+#### Cara Install:
+- Buat database dengan nama: <b>db_monitoring siswa</b>
+- Buat environment :
+  - windows: py -m venv env
+  - ubuntu: pthon3 -m venv venv
+- Jalankan perintah <b>pip install -r requirements.txt</b> pada terminal
+- Jlankan perintah:
+  - <b>flask db init</>
+  - <b>flask db migrate</>
+  - <b>flask db upgrade</>
+### Project Dalam Tahap Pengerjaan
 
