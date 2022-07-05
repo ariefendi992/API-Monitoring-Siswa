@@ -14,8 +14,6 @@ def tambah_admin():
     telp = request.json.get('no_telp')
     pengguna_id = request.json.get('pengguna_id')
 
-
-
     sql = MyDB(TuModel(nama_pegawai,nip, gender, alamat, telp, pengguna_id))
     query = sql.filter_by(nip=nip)
     if query is not None:
