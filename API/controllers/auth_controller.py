@@ -38,7 +38,7 @@ def tambah_pengguna():
     if query.filter_by(nama_pengguna=nama_pengguna) is not None:
         return jsonify({
             'error' : f'Akun dengan username {nama_pengguna} sudah ada.'
-        }), HTTP_400_BAD_REQUEST
+        }), HTTP_409_CONFLICT
 
     query.simpan()
 

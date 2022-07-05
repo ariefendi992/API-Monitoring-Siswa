@@ -10,7 +10,7 @@ class AuthModel(db.Model):
     slug = db.Column(db.String(128), nullable=False)
     kata_sandi = db.Column(db.String(256), nullable=False)
     kata_sandi_sekarang = db.Column(db.String(256), nullable=False)
-    level_id = db.Column(db.Integer, db.ForeignKey('tb_level.id', ondelete='CASCADE', onupdate='CASCADE'),
+    level_id = db.Column(db.Integer, db.ForeignKey('tb_level_pengguna.id', ondelete='CASCADE', onupdate='CASCADE'),
                         nullable=False)
     created_at = db.Column(db.DateTime, default=utc_makassar())
     updated_at = db.Column(db.DateTime, onupdate=utc_makassar())
@@ -33,7 +33,7 @@ class AuthModel(db.Model):
 
 
 class LevelModel(db.Model):
-    __tablename__ = 'tb_level'
+    __tablename__ = 'tb_level_pengguna'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     level = db.Column(db.String(64), nullable=False)  
 
